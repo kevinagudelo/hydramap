@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="!data"> Guardar Hidrante </ion-title>
+    <ion-title *ngIf="data"> Actualizar Hidrante </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="save-container">
+    <form [formGroup]="dataForm">
+      <div class="container">
+        <label for="">Notas</label>
+        <textarea formControlName="description" class="text-area"></textarea>
+      </div>
+
+      <div (click)="takePicture()" class="container">
+        <label for="">Subir foto</label>
+        <div class="future"  *ngIf="!imageUrl" >
+          <ion-icon name="cloud-upload-outline" style="font-size: 50px; color: #38B6FF;" ></ion-icon>
+       
+
+        </div>
+        <div *ngIf="imageUrl" style="display: flex; justify-content: center ; padding: 10px;">
+          <img  style="height: 300px; object-fit: cover;" [src]="imageUrl" alt="">
+        </div>
+      </div>
+      <ion-item>
+        <ion-checkbox formControlName="checked" justify="start">Revisado</ion-checkbox>
+      </ion-item>
+    </form>
+    <button *ngIf="!data" (click)="onSubmit()"  class="btn save">Guardar</button>
+    <button *ngIf="data" (click)="onSubmit()"  class="btn save">Actualizar</button>
+    <button class="btn close" (click)="cerrarModal()">Cerrar</button>
+  </div>
+  <!-- Contenido del modal aquí -->
+
+  
+</ion-content>
